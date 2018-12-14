@@ -1,1 +1,33 @@
 package check
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"time"
+
+	"github.com/cappyzawa/dummy-resource"
+)
+
+type Request struct {
+	Source  resource.Source  `json:"source"`
+	Version resource.Version `json:"version"`
+}
+
+type Response []resource.Version
+
+func main() {
+	var request Request
+	decoder := json.NewDecoder(os.Stdin)
+	err := decoder.Decode(&request)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to decode: %s\n", err.Error())
+		os.Exit(1)
+		return
+	}
+
+	response := Response{}
+	response = append(response, resource.Version{Date: time.Now().String()})
+
+	json.NewEncoder(os.Stdout).Encode(response)
+}
