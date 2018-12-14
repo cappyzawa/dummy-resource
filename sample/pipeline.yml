@@ -1,0 +1,23 @@
+resource_types:
+- name: dummy
+  type: docker-image
+  source:
+    repository: cappyzawa/dummy-resource
+
+resources:
+- name: dummy
+  type: dummy
+  source:
+    config1: config-value1
+    config2: config-value2
+
+jobs:
+- name: sample
+  plan:
+  - get: dummy
+    trigger: true
+    params:
+      get_param1: get-param-value1
+  - put: dummy
+    params:
+      put_param1: put-param-value1

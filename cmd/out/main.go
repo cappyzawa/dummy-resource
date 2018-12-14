@@ -1,12 +1,13 @@
-package out
+package main
 
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/cappyzawa/dummy-resource"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/cappyzawa/dummy-resource"
 )
 
 type Request struct {
@@ -35,6 +36,8 @@ func main() {
 
 	// 今回はresourceに対する操作がないためsrcは必要ない。
 	//src := os.Args[1]
+	fmt.Fprintf(os.Stderr, "source: %v\n", request.Source)
+	fmt.Fprintf(os.Stderr, "params: %v\n", request.Params)
 
 	t := time.Now()
 	response := Response{

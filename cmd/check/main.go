@@ -1,4 +1,4 @@
-package check
+package main
 
 import (
 	"encoding/json"
@@ -25,6 +25,8 @@ func main() {
 		os.Exit(1)
 		return
 	}
+
+	fmt.Fprintf(os.Stderr, "source: %v\n", request.Source)
 
 	response := Response{}
 	response = append(response, resource.Version{Date: time.Now().String()})

@@ -1,4 +1,4 @@
-package in
+package main
 
 import (
 	"encoding/json"
@@ -36,6 +36,8 @@ func main() {
 	}
 
 	dest := os.Args[1]
+	fmt.Fprintf(os.Stderr, "source: %v\n", request.Source)
+	fmt.Fprintf(os.Stderr, "params: %v\n", request.Params)
 
 	dayPath := fmt.Sprintf("%s/day", dest)
 	yearPath := fmt.Sprintf("%s/year", dest)
